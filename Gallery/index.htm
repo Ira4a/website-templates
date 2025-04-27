@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Gallery</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Geo:ital@0;1&display=swap" rel="stylesheet">
+		<style>
+			body {
+				background-image: linear-gradient(#9f3434, #d9bcb7, #e1b486);
+				background-attachment: fixed;
+			}
+			.container {
+				max-width: 1000px;
+				margin: 50px auto;
+			}
+			.text {
+				width: 450px;
+				padding-left: 30px; 
+				text-align: justify;
+			}
+			h1, p, a {
+				font-family: "Geo", sans-serif;
+				font-weight: 400;
+				font-style: normal;
+			}
+			.container > .image {
+				display: grid;
+				grid-template-columns: repeat(3, 300px);
+				grid-template-rows: repeat(3, 250px);
+				justify-content: center;
+				row-gap: 20px;
+				column-gap: 20px;
+			}
+			div img {
+				width: 300px;
+				height: 250px;
+				transition: linear 1s ;
+			}
+			div img:hover {
+				opacity: 0.5;
+				cursor: pointer;
+			}
+			form {
+				display: grid;
+				justify-content: end;
+				padding: 20px 30px 10px 0;
+				border-bottom: 1px solid #404040;
+			}
+			form button {
+				background-color: transparent;
+				border: 1px solid #111;
+				padding: 10px 45px;
+				text-transform: uppercase;
+				transition: linear 500ms;
+			}
+			form button:hover {
+				opacity: 0.3;
+			}
+			a {
+				text-decoration: none;
+				color: #111;
+			}
+			
+			@media only screen and (max-width: 768px) {
+				* {
+					margin: 0;
+					box-sizing: border-box;
+				}
+				.container {
+					margin: 0;
+				}
+				.text {
+					width: 90%;
+					padding-bottom: 10px;
+				}
+				.container > .image {
+					display: grid;
+					grid-template-columns: repeat(1, 300px);
+					grid-template-row: repeat(9, 250px);
+				}
+				div img {
+					width: 300px;
+					height: 250px;
+					margin: 0;
+				}
+			}
+			
+			@media (max-width: 1024px) { 
+				* {
+					margin: 0;
+					box-sizing: border-box;
+				}
+				.text {
+					width: 90%;
+					padding-bottom: 20px;
+				}
+				h1 {
+					font-size: 40px;
+				}
+				p {
+					font-size: 30px;
+				}
+				.container > .image {
+					display: grid;
+					grid-template-columns: repeat(1, 500px);
+					justify-content: center;
+				}
+				div img {
+					width: 500px;
+					object-fit: cover;
+					margin: 0;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="text">
+				<h1>Japan</h1>
+				<p>Japan is an island nation in East Asia, known for its rich culture, advanced technology, and stunning landscapes. From ancient temples and cherry blossoms to bustling cities like Tokyo and Osaka, Japan blends tradition with modern innovation.</p>
+			</div>
+			<div class="image">
+				<img src="1.jpg" alt="img1">
+				<img src="2.jpg" alt="img2">
+				<img src="3.jpg" alt="img3">
+				<img src="4.jpg" alt="img4">
+				<img src="5.jpg" alt="img5">
+				<img src="6.jpg" alt="img6">
+				<img src="7.jpg" alt="img7">
+				<img src="8.jpg" alt="img8">
+				<img src="9.jpg" alt="img9">
+			</div>
+			<form>
+				<button><a href="" alt="link">more...</a></button>
+			</form>
+		</div>
+	</body>
+</html>
