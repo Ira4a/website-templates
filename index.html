@@ -3,91 +3,140 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DPR IAN // Y2K GLASS EXPERIENTIAL</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;900&family=VT323&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <title>DPR IAN — Minimal Futurism</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   
   <style>
-    /* === RESET & Y2K GLASS VARIABLES === */
+    /* === PALETTE & MINIMAL FUTURISM VARIABLES === */
+    :root {
+      --bg-void: #0E0D10;
+      --bg-card: rgba(22, 20, 25, 0.7);
+      --red-crimson: #8C2226;
+      --red-deep: #4A1417;
+      --grey-light: #D8D8E0;
+      --grey-mid: #8E8D94;
+      --grey-dark: #333238;
+      --border-accent: rgba(140, 34, 38, 0.4);
+      --glow-red: rgba(140, 34, 38, 0.25);
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
-    
-    :root {
-      --bg-color: #06050b;
-      --glass-bg: rgba(255, 255, 255, 0.05);
-      --glass-border: rgba(255, 255, 255, 0.2);
-      --neon-cyan: #00f3ff;
-      --neon-pink: #ff00a0;
-      --glass-shadow: 0 8px 32px 0 rgba(0, 243, 255, 0.25);
-    }
 
     body {
-      background-color: var(--bg-color);
-      color: #ffffff;
-      font-family: 'Orbitron', sans-serif;
+      background-color: var(--bg-void);
+      color: var(--grey-light);
+      font-family: 'Inter', sans-serif;
       overflow: hidden;
       height: 100vh;
-      position: relative;
+      width: 100vw;
     }
 
-    /* === CANVAS BACKDROP (FALLING DROPS) === */
-    #dropCanvas {
+    /* === BACKGROUND MESH / FUTURISTIC GRID === */
+    .bg-grid {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
+      background-image: 
+        linear-gradient(rgba(140, 34, 38, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(140, 34, 38, 0.05) 1px, transparent 1px);
+      background-size: 60px 60px;
       z-index: 1;
       pointer-events: none;
     }
 
-    /* === HERO SECTION (GLASSMorphism) === */
+    .bg-gradient {
+      position: absolute;
+      top: 50%;
+      left: 30%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, var(--red-deep) 0%, transparent 70%);
+      filter: blur(80px);
+      opacity: 0.5;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* === HERO SECTION === */
     .hero {
+      position: relative;
+      z-index: 2;
       height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: center;
-      text-align: center;
-      position: relative;
-      z-index: 2;
+      align-items: flex-start;
+      padding-left: 10vw;
     }
 
-    /* Glass Card Center */
-    .hero-glass-card {
-      background: rgba(20, 15, 35, 0.35);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid var(--glass-border);
-      border-top: 1px solid rgba(255, 255, 255, 0.5);
-      border-left: 1px solid rgba(255, 255, 255, 0.5);
-      padding: 50px 70px;
-      border-radius: 30px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(255, 255, 255, 0.1);
+    .meta-tag {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 4px;
+      color: var(--red-crimson);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .meta-tag::before {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: var(--red-crimson);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--red-crimson);
     }
 
     h1 {
-      font-family: 'Syne', sans-serif;
-      font-size: 5rem;
-      font-weight: 800;
-      letter-spacing: 2px;
-      background: linear-gradient(135deg, #ffffff 0%, var(--neon-cyan) 50%, var(--neon-pink) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 6rem;
+      font-weight: 700;
+      letter-spacing: -2px;
+      line-height: 0.95;
+      color: var(--grey-light);
       text-transform: uppercase;
-      margin-bottom: 5px;
-      filter: drop-shadow(0 0 15px rgba(0, 243, 255, 0.4));
+      margin-bottom: 20px;
+    }
+
+    h1 span {
+      color: var(--grey-dark);
+      font-weight: 300;
+      transition: color 0.5s ease;
+    }
+
+    .hero:hover h1 span {
+      color: var(--red-crimson);
     }
 
     p.subtitle {
-      font-family: 'VT323', monospace;
-      font-size: 2rem;
+      font-size: 1.1rem;
+      font-weight: 300;
+      letter-spacing: 2px;
+      color: var(--grey-mid);
+      max-width: 480px;
+      line-height: 1.6;
+    }
+
+    .hint-text {
+      position: absolute;
+      bottom: 40px;
+      left: 10vw;
+      font-size: 0.75rem;
       letter-spacing: 3px;
-      color: var(--neon-cyan);
+      color: var(--grey-dark);
       text-transform: uppercase;
-      text-shadow: 0 0 8px var(--neon-cyan);
+      font-family: 'Space Grotesk', sans-serif;
     }
 
     /* === HOVER TRIGGER ZONE (RIGHT EDGE) === */
@@ -103,64 +152,97 @@
       justify-content: flex-end;
     }
 
-    /* === Y2K GLASS MENU === */
+    .hover-trigger-zone::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 30%;
+      height: 40%;
+      width: 2px;
+      background: linear-gradient(to bottom, transparent, var(--red-crimson), transparent);
+      opacity: 0.6;
+      transition: opacity 0.3s;
+    }
+
+    .hover-trigger-zone:hover::after {
+      opacity: 1;
+    }
+
+    /* === MINIMAL FUTURISM SIDE MENU === */
     .side-menu {
       position: fixed;
-      right: -130px;
+      right: -120px;
       top: 50%;
       transform: translateY(-50%);
       display: flex;
       flex-direction: column;
-      gap: 20px;
-      transition: right 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      gap: 24px;
+      transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       z-index: 101;
       padding: 10px;
     }
 
     .hover-trigger-zone:hover .side-menu,
     .side-menu:hover {
-      right: 25px;
+      right: 35px;
     }
 
-    /* Glass Orb Buttons */
+    /* Sleek Circular Nodes */
     .menu-btn {
-      width: 70px;
-      height: 70px;
+      width: 54px;
+      height: 54px;
       border-radius: 50%;
-      background: linear-gradient(135deg, rgba(255, 0, 160, 0.3) 0%, rgba(0, 243, 255, 0.2) 100%);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.4);
-      border-top: 2px solid rgba(255, 255, 255, 0.8);
-      color: #ffffff;
-      font-family: 'VT323', monospace;
-      font-size: 1.3rem;
-      font-weight: bold;
+      background: var(--bg-void);
+      border: 1px solid var(--grey-dark);
+      color: var(--grey-mid);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 1px;
       cursor: pointer;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(255, 255, 255, 0.3);
-      transition: all 0.3s ease;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
       display: flex;
       justify-content: center;
       align-items: center;
-      text-transform: uppercase;
+      position: relative;
+    }
+
+    .menu-btn::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: 50%;
+      padding: 1px;
+      background: linear-gradient(135deg, var(--red-crimson), transparent);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
 
     .menu-btn:hover {
-      transform: scale(1.2);
-      background: linear-gradient(135deg, rgba(255, 0, 160, 0.6) 0%, rgba(0, 243, 255, 0.5) 100%);
-      border-color: #ffffff;
-      box-shadow: 0 0 25px var(--neon-cyan), inset 0 0 15px #ffffff;
+      color: var(--grey-light);
+      border-color: var(--red-crimson);
+      transform: scale(1.15);
+      box-shadow: 0 0 20px var(--glow-red);
     }
 
-    /* === MINI-PAGE MODAL (GLASS POP-UP) === */
+    .menu-btn:hover::before {
+      opacity: 1;
+    }
+
+    /* === MINI-PAGE MODAL (MINIMAL OVERLAY) === */
     .modal-overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: rgba(5, 5, 12, 0.6);
-      backdrop-filter: blur(15px);
+      background: rgba(14, 13, 16, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       display: none;
       justify-content: center;
       align-items: center;
@@ -168,217 +250,171 @@
     }
 
     .modal-card {
-      background: rgba(18, 15, 30, 0.55);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      width: 75%;
+      background: var(--bg-card);
+      width: 70%;
       max-width: 800px;
-      height: 65vh;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-top: 2px solid rgba(255, 255, 255, 0.6);
-      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 243, 255, 0.2);
-      border-radius: 24px;
+      height: 60vh;
+      border: 1px solid rgba(216, 216, 224, 0.1);
+      border-left: 2px solid var(--red-crimson);
+      padding: 50px;
       position: relative;
       display: flex;
       flex-direction: column;
-      overflow: hidden;
-      animation: popUp 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-
-    .modal-header {
-      background: rgba(255, 255, 255, 0.05);
-      padding: 12px 25px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .modal-title {
-      font-family: 'VT323', monospace;
-      font-size: 1.4rem;
-      color: var(--neon-cyan);
-      letter-spacing: 2px;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.8), 0 0 40px var(--glow-red);
+      animation: modalSlide 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .close-btn {
-      background: rgba(255, 0, 160, 0.4);
-      border: 1px solid rgba(255, 255, 255, 0.6);
-      color: #fff;
-      width: 30px;
-      height: 30px;
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      background: none;
+      border: 1px solid var(--grey-dark);
+      color: var(--grey-mid);
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
-      font-weight: bold;
+      font-size: 0.9rem;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: 0.2s;
+      transition: all 0.3s ease;
+      font-family: 'Space Grotesk', sans-serif;
     }
 
     .close-btn:hover {
-      background: var(--neon-pink);
-      box-shadow: 0 0 10px var(--neon-pink);
-      transform: scale(1.1);
+      border-color: var(--red-crimson);
+      color: var(--grey-light);
+      transform: rotate(90deg);
     }
 
     .modal-body {
-      padding: 35px;
-      font-family: 'VT323', monospace;
-      font-size: 1.5rem;
-      line-height: 1.6;
-      color: #e0e0e0;
+      height: 100%;
       overflow-y: auto;
+      padding-right: 15px;
     }
 
     .modal-body h2 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 2rem;
-      color: #ffffff;
-      margin-bottom: 15px;
-      text-shadow: 0 0 10px var(--neon-pink);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--grey-light);
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
     }
 
-    @keyframes popUp {
-      from { transform: scale(0.8); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
+    .modal-body h2::before {
+      content: '//';
+      font-size: 0.9rem;
+      color: var(--red-crimson);
+      font-weight: 400;
+    }
+
+    .modal-body p {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--grey-mid);
+      font-weight: 300;
+      margin-bottom: 15px;
+    }
+
+    .data-list {
+      list-style: none;
+      margin-top: 15px;
+    }
+
+    .data-list li {
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(216, 216, 224, 0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--grey-mid);
+      font-size: 0.95rem;
+    }
+
+    .data-list li span.val {
+      color: var(--red-crimson);
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    @keyframes modalSlide {
+      from { opacity: 0; transform: translateY(20px) scale(0.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
     }
   </style>
 </head>
 <body>
 
-  <canvas id="dropCanvas"></canvas>
+  <div class="bg-grid"></div>
+  <div class="bg-gradient"></div>
 
+  <!-- Hero Section -->
   <section class="hero">
-    <div class="hero-glass-card">
-      <h1>DPR IAN</h1>
-      <p class="subtitle">&lt;VISUAL_DIRECTOR_&amp;_ARTIST&gt;</p>
-      <p style="margin-top: 20px; font-family: 'VT323', monospace; color: rgba(255, 255, 255, 0.6); font-size: 1.2rem;">
-        [ HOVER RIGHT EDGE TO OPEN MENU ]
-      </p>
-    </div>
+    <div class="meta-tag">ARCHIVE // VISUAL IDENTITY</div>
+    <h1>DPR IAN<span>.</span></h1>
+    <p class="subtitle">Exploring the dichotomy of shadow and sanity through cinematic soundscapes and high-contrast visual direction.</p>
+    <div class="hint-text">[ MOVE CURSOR TO RIGHT EDGE ]</div>
   </section>
 
+  <!-- Hover Trigger Area & Side Menu -->
   <div class="hover-trigger-zone">
     <nav class="side-menu">
       <button class="menu-btn" onclick="openModal('bio')">BIO</button>
-      <button class="menu-btn" onclick="openModal('audio')">AUDIO</button>
-      <button class="menu-btn" onclick="openModal('films')">FILMS</button>
+      <button class="menu-btn" onclick="openModal('disc')">DISC</button>
+      <button class="menu-btn" onclick="openModal('film')">FILM</button>
       <button class="menu-btn" onclick="openModal('info')">INFO</button>
     </nav>
   </div>
 
+  <!-- Mini-Page Modal -->
   <div class="modal-overlay" id="modalOverlay">
     <div class="modal-card">
-      <div class="modal-header">
-        <span class="modal-title">// DPR_IAN_WORLD.GLASS</span>
-        <button class="close-btn" onclick="closeModal()">✕</button>
-      </div>
+      <button class="close-btn" onclick="closeModal()">✕</button>
       <div class="modal-body" id="modalContent">
-        </div>
+        <!-- Content dynamic injection -->
+      </div>
     </div>
   </div>
 
   <script>
-    /* === FALLING LIQUID DROPS CANVAS ANIMATION === */
-    const canvas = document.getElementById('dropCanvas');
-    const ctx = canvas.getContext('2d');
-
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-
-    const drops = [];
-    const dropCount = 45;
-
-    class LiquidDrop {
-      constructor() {
-        this.reset();
-      }
-
-      reset() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * -canvas.height;
-        this.speed = Math.random() * 3 + 2;
-        this.length = Math.random() * 25 + 10;
-        this.radius = Math.random() * 3 + 2;
-        this.color = Math.random() > 0.5 ? 'rgba(0, 243, 255, ' : 'rgba(255, 0, 160, ';
-        this.opacity = Math.random() * 0.5 + 0.3;
-      }
-
-      update() {
-        this.y += this.speed;
-        if (this.y > canvas.height) {
-          this.reset();
-        }
-      }
-
-      draw() {
-        ctx.beginPath();
-        // Draw drop body
-        ctx.fillStyle = this.color + this.opacity + ')';
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Draw tail
-        ctx.beginPath();
-        ctx.strokeStyle = this.color + (this.opacity * 0.5) + ')';
-        ctx.lineWidth = this.radius * 0.8;
-        ctx.moveTo(this.x, this.y);
-        ctx.lineTo(this.x, this.y - this.length);
-        ctx.stroke();
-      }
-    }
-
-    for (let i = 0; i < dropCount; i++) {
-      drops.push(new LiquidDrop());
-    }
-
-    function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      drops.forEach(drop => {
-        drop.update();
-        drop.draw();
-      });
-      requestAnimationFrame(animate);
-    }
-    animate();
-
-    /* === MODAL CONTENT DATA === */
     const contentData = {
       bio: `
-        <h2>// BIOGRAPHY</h2>
-        <p>Christian Yu, professionally known as <strong>DPR IAN</strong>, is an Australian-born singer, director, and chief editor based in Seoul.</p>
-        <p style="margin-top: 15px; color: var(--neon-pink);">
-          Blending Y2K surrealism, mental health metaphors, and futuristic glass aesthetics into his audiovisual masterpieces.
-        </p>
+        <h2>BIOGRAPHY</h2>
+        <p><strong>Christian Yu</strong>, known professionally as <strong>DPR IAN</strong>, is an Australian director, composer, and visual artist operating from Seoul.</p>
+        <p>As chief visual director of the DPR collective, he pioneers a stark, narrative-driven aesthetic where psychological themes converge with dark ambient pop and cinematic surrealism.</p>
       `,
-      audio: `
-        <h2>// DISCOGRAPHY</h2>
-        <p>STREAMING ARCHIVES:</p>
-        <ul style="list-style: '◈ '; margin-left: 20px; margin-top: 10px; color: var(--neon-cyan);">
-          <li>MITO (Mood Swings In This Order)</li>
-          <li>MIITO (Mood Swings In To Order)</li>
-          <li>Dear Insanity...</li>
+      disc: `
+        <h2>DISCOGRAPHY</h2>
+        <ul class="data-list">
+          <li><span>MITO — Mood Swings In This Order</span> <span class="val">[2021]</span></li>
+          <li><span>MIITO — Mood Swings In To Order</span> <span class="val">[2022]</span></li>
+          <li><span>Dear Insanity...</span> <span class="val">[2023]</span></li>
+          <li><span>SAINT</span> <span class="val">[2024]</span></li>
         </ul>
       `,
-      films: `
-        <h2>// VISUAL DIRECTING</h2>
-        <p>DPR IAN directs, edits, and stars in his high-concept cinematic music videos.</p>
-        <p style="margin-top: 10px; color: var(--neon-cyan);">
-          FEATURED MV: 'Don't Go Insane', 'So Beautiful', 'Nerves', 'Ballroom Extravaganza'.
-        </p>
+      film: `
+        <h2>VISUAL WORKS</h2>
+        <p>Directorial and post-production portfolio focusing on high-concept narrative structures, color discipline, and dynamic editing.</p>
+        <ul class="data-list">
+          <li><span>Don't Go Insane</span> <span class="val">DIRECTOR</span></li>
+          <li><span>Ballroom Extravaganza</span> <span class="val">DIRECTOR</span></li>
+          <li><span>Nerves</span> <span class="val">DIRECTOR</span></li>
+          <li><span>So Beautiful</span> <span class="val">DIRECTOR</span></li>
+        </ul>
       `,
       info: `
-        <h2>// CONTACT & NETWORK</h2>
-        <p>DREAM PERFECT REGIME (DPR) STUDIO</p>
-        <p style="margin-top: 15px; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 12px; border: 1px solid var(--neon-cyan);">
-          EMAIL: contact@dreamperfectregime.com<br>
-          LOCATION: SEOUL, SOUTH KOREA
-        </p>
+        <h2>CONTACT & INQUIRIES</h2>
+        <p>For visual direction, soundtrack scoring, and global exhibition projects:</p>
+        <ul class="data-list" style="margin-top:20px;">
+          <li><span>REPRESENTATION</span> <span class="val">DPR STUDIO</span></li>
+          <li><span>EMAIL</span> <span class="val">contact@dreamperfectregime.com</span></li>
+          <li><span>LOCATION</span> <span class="val">SEOUL / SYDNEY</span></li>
+        </ul>
       `
     };
 
